@@ -919,6 +919,71 @@
         </div>
       </div>
     </footer>
+
+	  <!-- Cookie Banner -->
+<div id="cookie-banner" style="
+  position: fixed;
+  bottom: 0;
+  width: 100%;
+  background: #222;
+  color: #fff;
+  padding: 15px;
+  text-align: center;
+  font-size: 13px;
+  display: flex;
+  justify-content: center;
+  flex-wrap: wrap;
+  gap: 10px;
+  z-index: 9999;
+">
+  Мы используем cookies для аналитики. 
+  <button id="accept-cookies" style="
+    background:#4CAF50; color:#fff; border:none; padding:5px 10px; cursor:pointer; border-radius:3px;
+  ">Принять</button>
+  <button id="reject-cookies" style="
+    background:#888; color:#fff; border:none; padding:5px 10px; cursor:pointer; border-radius:3px;
+  ">Отклонить</button>
+</div>
+
+<script>
+(function() {
+  // Проверяем, есть ли уже согласие
+  if(localStorage.getItem('cookies-consent')) {
+    document.getElementById('cookie-banner').style.display = 'none';
+    if(localStorage.getItem('cookies-consent') === 'yes') {
+      loadGA();
+    }
+    return;
+  }
+
+  // Кнопка "Принять"
+  document.getElementById('accept-cookies').onclick = function() {
+    localStorage.setItem('cookies-consent', 'yes');
+    document.getElementById('cookie-banner').style.display = 'none';
+    loadGA();
+  };
+
+  // Кнопка "Отклонить"
+  document.getElementById('reject-cookies').onclick = function() {
+    localStorage.setItem('cookies-consent', 'no');
+    document.getElementById('cookie-banner').style.display = 'none';
+  };
+
+  // Функция загрузки Google Analytics
+  function loadGA() {
+    // Замените GA_MEASUREMENT_ID на ваш идентификатор GA4
+    window.dataLayer = window.dataLayer || [];
+    function gtag(){dataLayer.push(arguments);}
+    gtag('js', new Date());
+    gtag('config', 'GA_MEASUREMENT_ID', { 'anonymize_ip': true });
+
+    var script = document.createElement('script');
+    script.async = true;
+    script.src = "https://www.googletagmanager.com/gtag/js?id=GA_MEASUREMENT_ID";
+    document.head.appendChild(script);
+  }
+})();
+</script>
     
   
 
