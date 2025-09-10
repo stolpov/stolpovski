@@ -1,4 +1,4 @@
- AOS.init({
+AOS.init({
  	duration: 800,
  	easing: 'slide'
  });
@@ -439,4 +439,12 @@ $(function() {
   }
 
 });
+
+  // Set current year in footer
+  document.addEventListener('DOMContentLoaded', function() {
+    const yearSpan = document.getElementById('copyright-year');
+    if (yearSpan) {
+      yearSpan.textContent = new Date().getFullYear();
+    }
+  });
 
