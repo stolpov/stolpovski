@@ -1,9 +1,11 @@
 {
    "version": "1.0",
-   "api_version": 3,
+   "api_version": 1,
    "layout": {
       "logo": "https://stolpovskii.com/tableau.png",
       "color": "#ffffff",
+      "show_title": true
    }
 
 }
+
